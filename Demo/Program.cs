@@ -6,9 +6,9 @@ namespace Dump2015.Demo
 	{
 		private static void Main()
 		{
-			// Pretend we are DI container
-			var demo = new Demo(new OwnerFactory(), new BalanceCalculatorFactory(),
-				new TransactionCreatorFactory(new CurrencyConverter()));
+			// Pretend we are DI-container
+			var demo = new Demo(new OwnersFactory(), new BalanceCalculatorsFactory(),
+				new TransactionCreatorsFactory(new CurrencyConverter()));
 
 			demo.Show();
 

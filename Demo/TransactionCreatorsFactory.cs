@@ -1,15 +1,15 @@
 ﻿namespace Dump2015.Demo
 {
-	public interface ITransactionCreatorFactory
+	public interface ITransactionCreatorsFactory
 	{
 		ITransactionCreator Create(IAccount from, IAccount to);
 	}
 
-	public class TransactionCreatorFactory : ITransactionCreatorFactory
+	public class TransactionCreatorsFactory : ITransactionCreatorsFactory
 	{
 		private readonly ICurrencyConverter _currencyConverter;
 
-		public TransactionCreatorFactory(ICurrencyConverter currencyConverter)
+		public TransactionCreatorsFactory(ICurrencyConverter currencyConverter)
 		{
 			_currencyConverter = currencyConverter;
 		}

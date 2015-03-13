@@ -1,11 +1,11 @@
 ﻿namespace Dump2015.Demo
 {
-	public interface IBalanceCalculatorFactory
+	public interface IBalanceCalculatorsFactory
 	{
 		IBalanceCalculator Create(IAccount account);
 	}
 
-	public class BalanceCalculatorFactory : IBalanceCalculatorFactory
+	public class BalanceCalculatorsFactory : IBalanceCalculatorsFactory
 	{
 		public IBalanceCalculator Create(IAccount account)
 		{

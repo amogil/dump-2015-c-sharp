@@ -2,12 +2,12 @@
 
 namespace Dump2015.Demo
 {
-	public interface IOwnerFactory
+	public interface IOwnersFactory
 	{
 		IOwner Create(string title, string castle, string words, Currency currency);
 	}
 
-	public class OwnerFactory : IOwnerFactory
+	public class OwnersFactory : IOwnersFactory
 	{
 		private readonly Random _random = new Random();
 

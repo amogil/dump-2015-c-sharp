@@ -4,36 +4,41 @@ namespace Dump2015.Demo
 {
 	internal class Demo
 	{
-		private readonly IBalanceCalculatorFactory _balanceCalculatorFactory;
-		private readonly IOwnerFactory _ownerFactory;
-		private readonly ITransactionCreatorFactory _transactionCreatorFactory;
+		private readonly IBalanceCalculatorsFactory _balanceCalculatorsFactory;
+		private readonly IOwnersFactory _ownersFactory;
+		private readonly ITransactionCreatorsFactory _transactionCreatorsFactory;
 
-		public Demo(IOwnerFactory ownerFactory, IBalanceCalculatorFactory balanceCalculatorFactory,
-			ITransactionCreatorFactory transactionCreatorFactory)
+		public Demo(IOwnersFactory ownersFactory, IBalanceCalculatorsFactory balanceCalculatorsFactory,
+			ITransactionCreatorsFactory transactionCreatorsFactory)
 		{
-			_ownerFactory = ownerFactory;
-			_balanceCalculatorFactory = balanceCalculatorFactory;
-			_transactionCreatorFactory = transactionCreatorFactory;
+			_ownersFactory = ownersFactory;
+			_balanceCalculatorsFactory = balanceCalculatorsFactory;
+			_transactionCreatorsFactory = transactionCreatorsFactory;
 		}
 
 		public void Show()
 		{
-			var starks = _ownerFactory.Create("House Stark", "Winterfell", "Winter is Coming", Currency.Stags);
-			var lannisters = _ownerFactory.Create("House Lannister", "Casterly Rock", "Hear Me Roar!", Currency.Dragons);
+			var starks = _ownersFactory.Create("House Stark", "Winterfell", "Winter is Coming", Currency.Stags);
+			var lannisters = _ownersFactory.Create("House Lannister", "Casterly Rock", "Hear Me Roar!", Currency.Dragons);
 
-			var starksBalanceCalculator = _balanceCalculatorFactory.Create(starks.Account);
-			var lannistersBalanceCalculator = _balanceCalculatorFactory.Create(lannisters.Account);
-
-			PrintBalance(starks, starksBalanceCalculator);
-			PrintBalance(lannisters, lannistersBalanceCalculator);
-
-			var transactionCreator = _transactionCreatorFactory.Create(starks.Account, lannisters.Account);
-			transactionCreator.Create(Currency.Dragons, 100, "Pwned by Lannisters");
-
-			Console.WriteLine("{0} has taken {1} {2} from {3}\n", lannisters.Title, 100, Currency.Dragons, starks.Title);
+			var starksBalanceCalculator = _balanceCalculatorsFactory.Create(starks.Account);
+			var lannistersBalanceCalculator = _balanceCalculatorsFactory.Create(lannisters.Account);
 
 			PrintBalance(starks, starksBalanceCalculator);
 			PrintBalance(lannisters, lannistersBalanceCalculator);
+
+			Ops(starks, lannisters, 100, Currency.Dragons);
+
+			PrintBalance(starks, starksBalanceCalculator);
+			PrintBalance(lannisters, lannistersBalanceCalculator);
+		}
+
+		private void Ops(IOwner starks, IOwner lannisters, int amount, Currency currency)
+		{
+			var transactionCreator = _transactionCreatorsFactory.Create(starks.Account, lannisters.Account);
+			transactionCreator.Create(currency, amount, "Pwned by Lannisters");
+
+			Console.WriteLine("{0} has taken {1} {2} from {3}\n", lannisters.Title, amount, currency, starks.Title);
 		}
 
 		private void PrintBalance(IOwner owner, IBalanceCalculator balanceCalculator)
