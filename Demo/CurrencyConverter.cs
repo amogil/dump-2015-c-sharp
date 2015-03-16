@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 
 namespace Dump2015.Demo
 {
@@ -11,21 +9,20 @@ namespace Dump2015.Demo
 
 	public class CurrencyConverter : ICurrencyConverter
 	{
-		private static readonly List<Tuple<Currency, Currency, decimal>> DragonExchangeRates = new List
-			<Tuple<Currency, Currency, decimal>>
+		private static readonly Dictionary<Currency, decimal> DragonExchangeRates = new Dictionary<Currency, decimal>
 		{
-			Tuple.Create(Currency.Dragons, Currency.Dragons, 1m),
-			Tuple.Create(Currency.Dragons, Currency.Stags, 8.1m),
-			Tuple.Create(Currency.Dragons, Currency.Groats, 121.4m),
-			Tuple.Create(Currency.Dragons, Currency.Pennies, 268m),
+			{Currency.Dragons, 1m},
+			{Currency.Stags, 8.1m},
+			{Currency.Groats, 121.4m},
+			{Currency.Pennies, 268m},
 		};
 
 		public decimal Convert(Currency from, Currency to, decimal amount)
 		{
-			var fromRate = DragonExchangeRates.First(tuple => tuple.Item2 == from);
-			var toRate = DragonExchangeRates.First(tuple => tuple.Item2 == to);
+			var fromRate = DragonExchangeRates[from];
+			var toRate = DragonExchangeRates[to];
 
-			return toRate.Item3*amount/fromRate.Item3;
+			return toRate*amount/fromRate;
 		}
 	}
 }
