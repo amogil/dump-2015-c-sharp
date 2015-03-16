@@ -44,6 +44,7 @@
     <Compile Include="Account.cs" />
     <Compile Include="BalanceCalculator.cs" />
     <Compile Include="BalanceCalculatorsFactory.cs" />
+    <Compile Include="BalanceConsolePrinter.cs" />
     <Compile Include="Currency.cs" />
     <Compile Include="CurrencyConverter.cs" />
     <Compile Include="Demo.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="Transaction.cs" />
     <Compile Include="TransactionCreator.cs" />
     <Compile Include="TransactionCreatorsFactory.cs" />
+    <Compile Include="TransferConsolePrinter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -8,7 +8,7 @@ namespace Dump2015.Demo
 		{
 			// Pretend we are DI-container
 			var demo = new Demo(new OwnersFactory(), new BalanceCalculatorsFactory(),
-				new TransactionCreatorsFactory(new CurrencyConverter()));
+				new TransactionCreatorsFactory(new CurrencyConverter()), new BalanceConsolePrinter(), new TransferConsolePrinter());
 
 			demo.Show();
 
