@@ -2,8 +2,8 @@
 {
 	internal class Demo
 	{
-		private readonly IReceiptConsolePrinter _receiptConsolePrinter;
 		private readonly IOwnersRepository _ownersRepository;
+		private readonly IReceiptConsolePrinter _receiptConsolePrinter;
 		private readonly ITransferConsolePrinter _transferConsolePrinter;
 		private readonly ITransferService _transferService;
 
