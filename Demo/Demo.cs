@@ -5,16 +5,16 @@
 		private readonly IBalanceCalculatorsFactory _balanceCalculatorsFactory;
 		private readonly IBalanceConsolePrinter _balanceConsolePrinter;
 		private readonly IOwnersFactory _ownersFactory;
-		private readonly ITransactionCreatorsFactory _transactionCreatorsFactory;
 		private readonly ITransferConsolePrinter _transferConsolePrinter;
+		private readonly ITransferService _transferService;
 
 		public Demo(IOwnersFactory ownersFactory, IBalanceCalculatorsFactory balanceCalculatorsFactory,
-			ITransactionCreatorsFactory transactionCreatorsFactory, IBalanceConsolePrinter balanceConsolePrinter,
+			ITransferService transferService, IBalanceConsolePrinter balanceConsolePrinter,
 			ITransferConsolePrinter transferConsolePrinter)
 		{
 			_ownersFactory = ownersFactory;
 			_balanceCalculatorsFactory = balanceCalculatorsFactory;
-			_transactionCreatorsFactory = transactionCreatorsFactory;
+			_transferService = transferService;
 			_balanceConsolePrinter = balanceConsolePrinter;
 			_transferConsolePrinter = transferConsolePrinter;
 		}
@@ -30,18 +30,12 @@
 			_balanceConsolePrinter.Print(starks, starksBalanceCalculator);
 			_balanceConsolePrinter.Print(lannisters, lannistersBalanceCalculator);
 
-			Transfer(starks, lannisters, 100, Currency.Dragons);
+			var money = new Money(100, Currency.Dragons);
+			_transferService.Transfer(starks.Account, lannisters.Account, money, "Pwned by Lannisters");
+			_transferConsolePrinter.Print(starks, lannisters, money);
 
 			_balanceConsolePrinter.Print(starks, starksBalanceCalculator);
 			_balanceConsolePrinter.Print(lannisters, lannistersBalanceCalculator);
-		}
-
-		private void Transfer(IOwner starks, IOwner lannisters, int amount, Currency currency)
-		{
-			var transactionCreator = _transactionCreatorsFactory.Create(starks.Account, lannisters.Account);
-			transactionCreator.Create(currency, amount, "Pwned by Lannisters");
-
-			_transferConsolePrinter.Print(starks, lannisters, amount, currency);
 		}
 	}
 }
