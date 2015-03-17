@@ -4,6 +4,7 @@ namespace Dump2015.Demo
 {
 	public interface ICurrencyConverter
 	{
+		decimal Convert(Currency from, Currency to, decimal amount);
 		Money Convert(Money money, Currency to);
 	}
 
@@ -17,12 +18,18 @@ namespace Dump2015.Demo
 			{Currency.Pennies, 268m},
 		};
 
-		public Money Convert(Money money, Currency to)
+		public decimal Convert(Currency from, Currency to, decimal amount)
 		{
-			var fromRate = DragonExchangeRates[money.Currency];
+			var fromRate = DragonExchangeRates[from];
 			var toRate = DragonExchangeRates[to];
 
-			return new Money(toRate*money.Amount/fromRate, to);
+			return toRate*amount/fromRate;
+		}
+
+		public Money Convert(Money money, Currency to)
+		{
+			var amount = Convert(money.Currency, to, money.Amount);
+			return new Money(amount, to);
 		}
 	}
 }
