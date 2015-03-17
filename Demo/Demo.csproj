@@ -43,7 +43,6 @@
   <ItemGroup>
     <Compile Include="Account.cs" />
     <Compile Include="BalanceCalculator.cs" />
-    <Compile Include="BalanceCalculatorsFactory.cs" />
     <Compile Include="BalanceConsolePrinter.cs" />
     <Compile Include="Currency.cs" />
     <Compile Include="CurrencyConverter.cs" />

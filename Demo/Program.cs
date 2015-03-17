@@ -7,8 +7,8 @@ namespace Dump2015.Demo
 		private static void Main()
 		{
 			// Pretend we are DI-container
-			var demo = new Demo(new OwnersRepository(), new BalanceCalculatorsFactory(),
-				new TransferService(new CurrencyConverter()), new BalanceConsolePrinter(), new TransferConsolePrinter());
+			var demo = new Demo(new OwnersRepository(), new TransferService(new CurrencyConverter()),
+				new BalanceConsolePrinter(new BalanceCalculator()), new TransferConsolePrinter());
 
 			demo.Show();
 

@@ -4,27 +4,14 @@ namespace Dump2015.Demo
 {
 	public interface IBalanceCalculator
 	{
-		Currency Currency { get; }
-		decimal GetBalance();
+		decimal GetBalance(IAccount account);
 	}
 
 	public class BalanceCalculator : IBalanceCalculator
 	{
-		private readonly IAccount _account;
-
-		public BalanceCalculator(IAccount account)
+		public decimal GetBalance(IAccount account)
 		{
-			_account = account;
-		}
-
-		public decimal GetBalance()
-		{
-			return _account.InitialBalance + _account.Transactions.Sum(transaction => transaction.Amount);
-		}
-
-		public Currency Currency
-		{
-			get { return _account.Currency; }
+			return account.InitialBalance + account.Transactions.Sum(transaction => transaction.Amount);
 		}
 	}
 }
