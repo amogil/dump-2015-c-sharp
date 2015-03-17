@@ -11,6 +11,7 @@ namespace Dump2015.Demo
 		IEnumerable<ITransaction> Transactions { get; }
 		decimal InitialBalance { get; }
 		void AddTransaction(ITransaction transaction);
+		Money GetBalance();
 	}
 
 	public class Account : IAccount
@@ -41,6 +42,12 @@ namespace Dump2015.Demo
 			if (transaction.Account != this)
 				throw new ApplicationException("Hodor!");
 			_transactions.Add(transaction);
+		}
+
+		public Money GetBalance()
+		{
+			var amount = InitialBalance + _transactions.Sum(transaction => transaction.Amount);
+			return new Money(amount, Currency);
 		}
 	}
 }

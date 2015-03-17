@@ -2,17 +2,17 @@
 {
 	internal class Demo
 	{
-		private readonly IBalanceConsolePrinter _balanceConsolePrinter;
+		private readonly IReceiptConsolePrinter _receiptConsolePrinter;
 		private readonly IOwnersRepository _ownersRepository;
 		private readonly ITransferConsolePrinter _transferConsolePrinter;
 		private readonly ITransferService _transferService;
 
 		public Demo(IOwnersRepository ownersRepository, ITransferService transferService,
-			IBalanceConsolePrinter balanceConsolePrinter, ITransferConsolePrinter transferConsolePrinter)
+			IReceiptConsolePrinter receiptConsolePrinter, ITransferConsolePrinter transferConsolePrinter)
 		{
 			_ownersRepository = ownersRepository;
 			_transferService = transferService;
-			_balanceConsolePrinter = balanceConsolePrinter;
+			_receiptConsolePrinter = receiptConsolePrinter;
 			_transferConsolePrinter = transferConsolePrinter;
 		}
 
@@ -23,15 +23,15 @@
 			var starks = _ownersRepository.CreateNew("House Stark", "Winterfell", "Winter is Coming", starksInitMoney);
 			var lannisters = _ownersRepository.CreateNew("House Lannister", "Casterly Rock", "Hear Me Roar!", lannistersInitMoney);
 
-			_balanceConsolePrinter.Print(starks);
-			_balanceConsolePrinter.Print(lannisters);
+			_receiptConsolePrinter.Print(starks);
+			_receiptConsolePrinter.Print(lannisters);
 
 			var money = new Money(100, Currency.Dragons);
 			_transferService.Transfer(starks.Account, lannisters.Account, money, "Pwned by Lannisters");
 			_transferConsolePrinter.Print(starks, lannisters, money);
 
-			_balanceConsolePrinter.Print(starks);
-			_balanceConsolePrinter.Print(lannisters);
+			_receiptConsolePrinter.Print(starks);
+			_receiptConsolePrinter.Print(lannisters);
 		}
 	}
 }
