@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account.cs" />
-    <Compile Include="KingsEnvyCalculator.cs" />
+    <Compile Include="KingsMentalStateCalculator.cs" />
     <Compile Include="ReceiptConsolePrinter.cs" />
     <Compile Include="Currency.cs" />
     <Compile Include="CurrencyConverter.cs" />

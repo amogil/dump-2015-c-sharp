@@ -3,18 +3,18 @@ using System.Linq;
 
 namespace Dump2015.Demo
 {
-	public interface IKingsStateCalculator
+	public interface IKingsMentalStateCalculator
 	{
 		int GetEnvy(IOwner owner);
 	}
 
-	public class KingsStateCalculator : IKingsStateCalculator
+	public class KingsMentalStateCalculator : IKingsMentalStateCalculator
 	{
 		private const decimal KingsEnvyThresholdGroats = 100;
 		private const decimal KingsGrace = 1000;
 		private readonly ICurrencyConverter _currencyConverter;
 
-		public KingsStateCalculator(ICurrencyConverter currencyConverter)
+		public KingsMentalStateCalculator(ICurrencyConverter currencyConverter)
 		{
 			_currencyConverter = currencyConverter;
 		}

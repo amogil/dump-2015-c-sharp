@@ -9,11 +9,11 @@ namespace Dump2015.Demo
 
 	public class ReceiptConsolePrinter : IReceiptConsolePrinter
 	{
-		private readonly IKingsStateCalculator _kingsStateCalculator;
+		private readonly IKingsMentalStateCalculator _kingsMentalStateCalculator;
 
-		public ReceiptConsolePrinter(IKingsStateCalculator kingsStateCalculator)
+		public ReceiptConsolePrinter(IKingsMentalStateCalculator kingsMentalStateCalculator)
 		{
-			_kingsStateCalculator = kingsStateCalculator;
+			_kingsMentalStateCalculator = kingsMentalStateCalculator;
 		}
 
 		public void Print(IOwner owner)
@@ -22,7 +22,7 @@ namespace Dump2015.Demo
 			Console.WriteLine("----------- RECEIPT -----------");
 			Console.WriteLine("Customer: {0} ({1})", owner.Title, owner.Words);
 			Console.WriteLine("Balance: {0} {1}", balance.Amount, balance.Currency);
-			Console.WriteLine("King's envy: {0} ", _kingsStateCalculator.GetEnvy(owner));
+			Console.WriteLine("King's envy: {0} ", _kingsMentalStateCalculator.GetEnvy(owner));
 			Console.WriteLine("-------------------------------");
 			Console.WriteLine();
 		}
