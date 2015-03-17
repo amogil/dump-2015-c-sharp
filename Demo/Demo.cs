@@ -4,15 +4,15 @@
 	{
 		private readonly IBalanceCalculatorsFactory _balanceCalculatorsFactory;
 		private readonly IBalanceConsolePrinter _balanceConsolePrinter;
-		private readonly IOwnersFactory _ownersFactory;
+		private readonly IOwnersRepository _ownersRepository;
 		private readonly ITransferConsolePrinter _transferConsolePrinter;
 		private readonly ITransferService _transferService;
 
-		public Demo(IOwnersFactory ownersFactory, IBalanceCalculatorsFactory balanceCalculatorsFactory,
+		public Demo(IOwnersRepository ownersRepository, IBalanceCalculatorsFactory balanceCalculatorsFactory,
 			ITransferService transferService, IBalanceConsolePrinter balanceConsolePrinter,
 			ITransferConsolePrinter transferConsolePrinter)
 		{
-			_ownersFactory = ownersFactory;
+			_ownersRepository = ownersRepository;
 			_balanceCalculatorsFactory = balanceCalculatorsFactory;
 			_transferService = transferService;
 			_balanceConsolePrinter = balanceConsolePrinter;
@@ -21,8 +21,10 @@
 
 		public void Show()
 		{
-			var starks = _ownersFactory.Create("House Stark", "Winterfell", "Winter is Coming", Currency.Stags);
-			var lannisters = _ownersFactory.Create("House Lannister", "Casterly Rock", "Hear Me Roar!", Currency.Dragons);
+			var starksInitMoney = new Money(1500, Currency.Stags);
+			var lannistersInitMoney = new Money(9999, Currency.Dragons);
+			var starks = _ownersRepository.CreateNew("House Stark", "Winterfell", "Winter is Coming", starksInitMoney);
+			var lannisters = _ownersRepository.CreateNew("House Lannister", "Casterly Rock", "Hear Me Roar!", lannistersInitMoney);
 
 			var starksBalanceCalculator = _balanceCalculatorsFactory.Create(starks.Account);
 			var lannistersBalanceCalculator = _balanceCalculatorsFactory.Create(lannisters.Account);
