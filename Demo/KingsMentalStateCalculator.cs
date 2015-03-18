@@ -21,13 +21,13 @@ namespace Dump2015.Demo
 
 		public int GetEnvy(IOwner owner)
 		{
-			var balanceInDragons = _currencyConverter.Convert(owner.Account.GetBalance(), Currency.Groats);
+			var balanceInGroats = _currencyConverter.Convert(owner.Account.GetBalance(), Currency.Groats);
 			var incomesWithoutTrash = owner.Account.Transactions
 				.Select(t => _currencyConverter.Convert(owner.Account.Currency, Currency.Groats, t.Amount))
 				.Where(amount => amount > KingsEnvyThresholdGroats);
 			var transactionsCountToEnvy = incomesWithoutTrash.Count();
 			if (transactionsCountToEnvy == 0) transactionsCountToEnvy = 1;
-			var envy = balanceInDragons.Amount/(transactionsCountToEnvy*KingsGrace);
+			var envy = balanceInGroats.Amount/(transactionsCountToEnvy*KingsGrace);
 			return Convert.ToInt32(envy);
 		}
 	}
