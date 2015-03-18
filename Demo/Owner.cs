@@ -10,12 +10,12 @@
 
 	public class Owner : IOwner
 	{
-		public Owner(string title, string castle, string words, IAccount account)
+		public Owner(string title, string castle, string words, Money initBalance)
 		{
 			Title = title;
 			Castle = castle;
 			Words = words;
-			Account = account;
+			Account = new Account(initBalance.Currency, initBalance.Amount);
 		}
 
 		public IAccount Account { get; set; }
