@@ -4,16 +4,14 @@
 	{
 		private readonly IOwnersRepository _ownersRepository;
 		private readonly IReceiptConsolePrinter _receiptConsolePrinter;
-		private readonly ITransferConsolePrinter _transferConsolePrinter;
 		private readonly ITransferService _transferService;
 
 		public Demo(IOwnersRepository ownersRepository, ITransferService transferService,
-			IReceiptConsolePrinter receiptConsolePrinter, ITransferConsolePrinter transferConsolePrinter)
+			IReceiptConsolePrinter receiptConsolePrinter)
 		{
 			_ownersRepository = ownersRepository;
 			_transferService = transferService;
 			_receiptConsolePrinter = receiptConsolePrinter;
-			_transferConsolePrinter = transferConsolePrinter;
 		}
 
 		public void Show()
@@ -28,7 +26,6 @@
 
 			var money = new Money(100, Currency.Dragons);
 			_transferService.Transfer(starks.Account, lannisters.Account, money, "Pwned by Lannisters");
-			_transferConsolePrinter.Print(starks, lannisters, money);
 
 			_receiptConsolePrinter.Print(starks);
 			_receiptConsolePrinter.Print(lannisters);

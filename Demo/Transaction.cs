@@ -9,8 +9,6 @@ namespace Dump2015.Demo
 		decimal Amount { get; }
 		ITransaction Reference { get; }
 		string Comment { get; }
-
-		void AssignReference(ITransaction transaction);
 	}
 
 	public class Transaction : ITransaction
@@ -28,10 +26,5 @@ namespace Dump2015.Demo
 		public decimal Amount { get; private set; }
 		public ITransaction Reference { get; private set; }
 		public string Comment { get; private set; }
-
-		public void AssignReference(ITransaction transaction)
-		{
-			Reference = transaction;
-		}
 	}
 }
