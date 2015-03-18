@@ -5,7 +5,7 @@
 		private readonly IReceiptConsolePrinter _receiptConsolePrinter;
 		private readonly ITransferService _transferService;
 
-		public Demo(ITransferService transferService,IReceiptConsolePrinter receiptConsolePrinter)
+		public Demo(ITransferService transferService, IReceiptConsolePrinter receiptConsolePrinter)
 		{
 			_transferService = transferService;
 			_receiptConsolePrinter = receiptConsolePrinter;
