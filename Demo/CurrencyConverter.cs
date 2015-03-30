@@ -5,7 +5,6 @@ namespace Dump2015.Demo
 	public interface ICurrencyConverter
 	{
 		decimal Convert(Currency from, Currency to, decimal amount);
-		Money Convert(Money money, Currency to);
 	}
 
 	public class CurrencyConverter : ICurrencyConverter
@@ -24,12 +23,6 @@ namespace Dump2015.Demo
 			var toRate = DragonExchangeRates[to];
 
 			return toRate*amount/fromRate;
-		}
-
-		public Money Convert(Money money, Currency to)
-		{
-			var amount = Convert(money.Currency, to, money.Amount);
-			return new Money(amount, to);
 		}
 	}
 }

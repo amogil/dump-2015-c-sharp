@@ -8,9 +8,8 @@ namespace Dump2015.Demo
 		{
 			// Pretend we are DI-container
 			var currencyConverter = new CurrencyConverter();
-			var demo = new Demo(new OwnersRepository(), new TransferService(currencyConverter),
-				new ReceiptConsolePrinter(new KingsMentalStateCalculator(currencyConverter)),
-				new TransferConsolePrinter());
+			var demo = new Demo(new TransferService(currencyConverter),
+				new ReceiptConsolePrinter(new KingsMentalStateCalculator(currencyConverter)));
 
 			demo.Show();
 
